@@ -18,6 +18,15 @@ public class YOLODetector {
     private float imageWidthOriginal;
     private float imageHeightOriginal;
 
+    /*
+    thực hiện chuỗi các bước tiền xử lý ảnh một cách rõ ràng, tuần tự và dễ tái sử dụng
+    - ResizeOp	Thay đổi kích thước ảnh (resize)
+    - NormalizeOp	Chuẩn hóa giá trị pixel (ví dụ: chia cho 255 để đưa về [0, 1])
+    - CastOp	Ép kiểu dữ liệu (ví dụ: từ UINT8 sang FLOAT32)
+    - CropOp	Cắt ảnh
+    - Rot90Op	Xoay ảnh
+     */
+
     private final ImageProcessor imageProcessor = new ImageProcessor.Builder()
             .add(new NormalizeOp(0f, 255f)) // Normalize the pixel values to [0, 1]
             .add(new CastOp(DataType.FLOAT32))
